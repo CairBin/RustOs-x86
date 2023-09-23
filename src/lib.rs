@@ -7,10 +7,17 @@
 
 pub mod gdt;
 pub mod interrupts;
+pub mod memory;
 pub mod serial;
 pub mod vga_buffer;
 
 use core::panic::PanicInfo;
+
+#[cfg(test)]
+use bootloader::{entry_point, BootInfo};
+
+#[cfg(test)]
+entry_point!(test_kernel_main);
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u32)]
@@ -65,13 +72,12 @@ fn panic(info: &PanicInfo) -> ! {
 }
 
 /// ## 函数说明
-/// `cargo test`的入口
+/// `cargo test`的入口，在测试中为调用entry_point宏来代替_start
 ///
 /// ## 用法
 /// 这个函数不需要你来调用
 #[cfg(test)]
-#[no_mangle]
-pub extern "C" fn _start() -> ! {
+fn test_kernel_main(_boot_info: &'static BootInfo) -> ! {
     init();
     test_main();
     hlt_loop();
