@@ -13,6 +13,7 @@ x86_64 = "0.14.2"
 uart_16550 = "0.2.0"
 pic8259="0.10.1"
 pc-keyboard = "0.5.0"
+linked_list_allocator = "0.9.0"
 
 ## Cargo bug: 开启导致Cargo test报错
 # [profile.dev]
@@ -36,3 +37,4 @@ test-timeout = 10          # (in seconds)
 [[test]]
 name = "stack_overflow"
 harness = false
+
