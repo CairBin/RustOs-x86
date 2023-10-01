@@ -4,6 +4,8 @@
 #![test_runner(crate::test_runner)]
 #![reexport_test_harness_main = "test_main"]
 #![feature(abi_x86_interrupt)] //x86-interrupt非稳定特性
+#![feature(const_mut_refs)]
+
 extern crate alloc;
 
 pub mod allocator;
